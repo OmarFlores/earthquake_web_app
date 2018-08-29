@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import {LineChart,CartesianGrid,XAxis,YAxis,Legend,Line,Tooltip} from 'recharts'
 import {Typography} from '@material-ui/core'
 import {getRecordsForChart} from '../utils/USGSDataTrans';
+import LineChartCustomTooltip from './LineChartCustomTooltip';
 
 export default class BarChart extends Component {
 
@@ -57,7 +58,7 @@ export default class BarChart extends Component {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="dateformated" />
                     <YAxis type="number" domain={[0, 'dataMax']}/>
-                    <Tooltip />
+                    <Tooltip content={<LineChartCustomTooltip />} />
                     <Legend />
                     <Line type="monotone" dataKey="mag" stroke="#8884d8" />
                 </LineChart>

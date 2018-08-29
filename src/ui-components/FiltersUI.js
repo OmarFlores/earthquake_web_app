@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import {Card,CardContent,Button,Typography,FormControl,RadioGroup,FormControlLabel,Radio} from "@material-ui/core/";
 import Divider from '@material-ui/core/Divider';
+import {top_five,top_ten,all_events,default_zoom} from '../utils/Consntants'
 
 export default class FiltersUI extends Component {
 
@@ -28,7 +29,7 @@ export default class FiltersUI extends Component {
     });
 
     state = {
-        topdatarecords: "5",
+        topdatarecords: top_five,
     };
 
     loadDataSetFromUSGS = () =>{
@@ -36,7 +37,7 @@ export default class FiltersUI extends Component {
     };
 
     handleStateChangeRadioButton = event =>{
-        this.setState({ topdatarecords: event.target.value });
+        this.setState({ topdatarecords: parseInt(event.target.value) });
         this.props.handleNumberOfEvents(parseInt(event.target.value))
     };
 
@@ -61,7 +62,7 @@ export default class FiltersUI extends Component {
                             aria-label="products"
                             name="topearth"
                             className={"groupRadioProd"}
-                            value={this.state.topdatarecords}
+                            value={this.state.topdatarecords.toString()}
                             onChange={this.handleStateChangeRadioButton}
                             row
                         >

@@ -10,6 +10,7 @@ import BarChart from '../charts/BarChart';
 import QuakeLegendUI from '../ui-components/QuakeLegendUI';
 import CardContent from "@material-ui/core/CardContent/CardContent";
 import Card from "@material-ui/core/Card/Card";
+import {top_five,top_ten,all_events} from '../utils/Consntants'
 
 export default class MainView extends Component {
 
@@ -17,7 +18,7 @@ export default class MainView extends Component {
         topfive : true,
         topten  : false,
         alldata : false,
-        topFilter : 5,
+        topFilter : top_five,
     };
 
     styles = theme => ({
@@ -35,10 +36,10 @@ export default class MainView extends Component {
     });
 
     handleNumberOfEvents = (numberEvents) => {
-        if(numberEvents > 0 && numberEvents <= 10)
+        if(numberEvents => all_events && numberEvents <= top_ten)
             this.setState({topFilter:numberEvents});
         else
-            this.setState({topFilter:5});
+            this.setState({topFilter:top_five});
 
     } ;
 

@@ -10,13 +10,14 @@ import {
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import {getNumberOfRecordsByFlag} from '../utils/USGSDataTrans'
+import {all_events,default_zoom,viewport_zoom} from '../utils/Consntants';
 const moment = require('moment');
 
 export default class MapUI extends Component {
 
     state = {
         position: [40.7099994,-99.6154004],
-        zoom: 3,
+        zoom: default_zoom,
         animate: true,
         style: null,
         dataformap:[],
@@ -26,7 +27,7 @@ export default class MapUI extends Component {
         lng: -119.417931,
         viewport: {
             center: [33.5425003,-6.970123],
-            zoom: 2,
+            zoom: viewport_zoom,
         },
     };
 
@@ -47,8 +48,8 @@ export default class MapUI extends Component {
         let current_viewport = this.state.viewport;
 
         if (filteredData.length > 0){
-            current_viewport = (this.props.topFilter > 1) ? {center:[filteredData[0].geometry.coordinates[1],filteredData[0].geometry.coordinates[0]],
-                zoom:3} : this.state.viewport;
+            current_viewport = (this.props.topFilter > all_events) ? {center:[filteredData[0].geometry.coordinates[1],filteredData[0].geometry.coordinates[0]],
+                zoom:viewport_zoom} : this.state.viewport;
 
             filteredData.map( (data) => {
                 let posArr = [data.geometry.coordinates[1],data.geometry.coordinates[0]];
